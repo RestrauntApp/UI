@@ -3,6 +3,7 @@ export class Restaurant {
     restName: string = "";
     restType: string = "";
     restCulture: string="";
+    avgRevNum: number =0;
 
     constructor(){}
 }

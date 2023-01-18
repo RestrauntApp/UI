@@ -1,1 +1,25 @@
-<p>restaurant works!</p>
+<div class="container">
+    <div class="col-6">
+        <table *ngFor="let rest of allRestaurants">
+            <thead>
+                <tr>
+                    <th>Restaurant Name</th>
+                    <th>Restaurant Type</th>
+                    <th>Restaurant Cuisine</th>
+                    <th>Average Raiting</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{rest.restName}}</td>
+                    <td>{{rest.restType}}</td>
+                    <td>{{rest.restCulture}}</td>
+                    <td>{{rest. avgRevNum}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
