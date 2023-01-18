@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { Restaurant } from '../models/restaurant';
 
@@ -12,7 +12,8 @@ export class RestaurantService {
 
 
   public getRestaurants(): Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(enviroment.baseUrl + this.restaurantUrl,{headers: env.headers});
+    return this.http.get<Restaurant[]>( this.restaurantUrl)
+        .pipe(map((restaurants: Restaurant[]) => restaurants.map(restaurant => new Restaurant())));
   }
   constructor(private http: HttpClient) { }
 }
