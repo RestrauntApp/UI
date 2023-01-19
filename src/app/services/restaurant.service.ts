@@ -8,11 +8,12 @@ import { Restaurant } from '../models/restaurant';
   providedIn: 'root'
 })
 export class RestaurantService {
-  private restaurantUrl: string = "/api/restaurant"
+  private restaurantUrl: string = "https://localhoast:7253"
 
 
   public getRestaurants(): Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>( this.restaurantUrl)
+    let endpoint = '/api/Restaurant'
+    return this.http.get<Restaurant[]>( this.restaurantUrl+endpoint)
         .pipe(map((restaurants: Restaurant[]) => restaurants.map(restaurant => new Restaurant())));
   }
   constructor(private http: HttpClient) { }

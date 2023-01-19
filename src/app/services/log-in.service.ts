@@ -8,7 +8,7 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class LogInService {
- authUrl: string = "https://localhost:7120/user";
+ authUrl: string = "https://localhost:7253/user";
   currentUser?: User | null;
 
 
