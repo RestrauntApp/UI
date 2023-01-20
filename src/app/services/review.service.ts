@@ -6,13 +6,14 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReviewService {
-  private reviewUrl: string = "/api/review";
+  private reviewUrl: string = "https://localhost:7120";
 
   constructor(private http: HttpClient) { }
 
 public getRestAverage(resId: number): Observable<number>{
 
-  return this.http.get<number>(this.reviewUrl+'/res/avg');
+  return this.http.get<number>(this.reviewUrl+'/Avg?restId='+resId);
 }
 
+//https://localhost:7120/Avg?restId=
 }

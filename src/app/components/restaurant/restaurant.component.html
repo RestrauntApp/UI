@@ -1,8 +1,9 @@
 
-<h1>Restaurants</h1>
+<a href="">Log in here</a>
+<h1>Restaurants</h1> 
 <div class="container">
     <div class="col-6">
-        <table *ngFor="let rest of allRestaurants">
+        <table >
             <thead>
                 <tr>
                     <th>Restaurant Name</th>
@@ -13,10 +14,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{{rest.restName}}</td>
-                    <td>{{rest.restType}}</td>
-                    <td>{{rest.restCulture}}</td>
+                <tr *ngFor="let rest of allRestaurants">
+                    <td>{{rest.name}}</td>
+                    <td>{{rest.type}}</td>
+                    <td>{{rest.culture}}</td>
                     <td>{{rest. avgRevNum}}</td>
                 </tr>
             </tbody>

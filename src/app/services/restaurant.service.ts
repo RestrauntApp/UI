@@ -8,13 +8,13 @@ import { Restaurant } from '../models/restaurant';
   providedIn: 'root'
 })
 export class RestaurantService {
-  private restaurantUrl: string = "https://localhoast:7253"
+  private restaurantUrl: string = "https://localhost:7120"
 
 
   public getRestaurants(): Observable<Restaurant[]>{
-    let endpoint = '/api/Restaurant'
-    return this.http.get<Restaurant[]>( this.restaurantUrl+endpoint)
-        .pipe(map((restaurants: Restaurant[]) => restaurants.map(restaurant => new Restaurant())));
+    let endpoint = '/api/restaurant'
+    return this.http.get<Restaurant[]>( this.restaurantUrl+endpoint);
+       //.pipe(map((restaurants: Restaurant[]) => restaurants.map(restaurant => new Restaurant(restaurant.Id, restaurant.Name,restaurant.Type,restaurant.Culture,0))));
   }
   constructor(private http: HttpClient) { }
 }

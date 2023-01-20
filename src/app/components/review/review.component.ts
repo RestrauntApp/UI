@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Restaurant } from 'src/app/models/restaurant';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-review',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent {
+
+
+ constructor(private reviewService: ReviewService){}
+
+
+
+public getAverageReview(restaurant: Restaurant){
+
+  return this.reviewService.getRestAverage(restaurant.id);
+}
 
 }

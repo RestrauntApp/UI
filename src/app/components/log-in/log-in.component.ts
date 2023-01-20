@@ -1,48 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
-
-import { User } from 'src/app/models/user';
-import { LogInService } from 'src/app/services/log-in.service';
-import { TransferService } from 'src/app/services/transfer.service';
-
+import { SocialAuthService } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login";
 @Component({
-  selector: 'app-log-in',
+  selector: 'app-login',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css']
 })
-export class LogInComponent implements OnInit {
-  userLoggedIn = false;
-  currentUser!: User;
-  loginForm: FormGroup = this.fb.group({});
-
-
-  constructor(private httpServ: LogInService, private router: Router,
-    private transfer: TransferService, private fb: FormBuilder) { }
-
-
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email], { updateOn: 'blur' }],
-      password: ['', Validators.required],
+export class LoginComponent implements OnInit {
+   public user: SocialUser = new SocialUser;
+   	constructor(private authService: SocialAuthService, private router:Router) {}
+ngOnInit() {
+      this.authService.authState.subscribe(user => {
+      this.user = user;
+      console.log(user);
     });
   }
-
-  fieldInvalid(formControl: AbstractControl){
-    return formControl.invalid && formControl.dirty;
+  public signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(()=>this.router.navigate(['home']));
   }
-
-  onSubmit(): void{
-    const email = this.loginForm.get('email')?.value;
-    const password = this.loginForm.get('password')?.value;
-
-    this.httpServ.logIn(email,password).pipe(
-      tap(response => this.currentUser = new User())
-    ).subscribe((response) => this.userLoggedIn = true);
+  public signOut(): void {
+    this.authService.signOut();
   }
-
 }
+
 
 
 
